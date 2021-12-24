@@ -46,5 +46,24 @@ Route::group(['prefix' => 'pengguna','middleware' => ['auth','role:pengguna']], 
     });
 });
     
+// Route menampilkan fitur Data Anak, Data Kegiatan, dan Data Donasi
+Route::group(['prefix' => 'admin','middleware' => ['auth']], function(){
+    Route::get('data_anak', function(){
+        return view('data_anak.index');
+    })->middleware(['role:admin']);
+
+    Route::get('data_kegiatan', function(){
+        return view('data_kegiatan.index');
+    })->middleware(['role:admin']);
+
+    Route::get('data_donasi', function(){
+        return view('data_donasi.index');
+    })->middleware(['role:admin']);
+
+    Route::get('beranda', function(){
+        return view('beranda.index');
+    })->middleware(['role:admin']);
+
+});
 
     
